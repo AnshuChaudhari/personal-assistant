@@ -20,8 +20,8 @@ public class VoiceOutputService {
     private Random random;
 
     public VoiceOutputService() {
-        synthesizer = new SynthesiserV2("AIzaSyBOti4mM-6x9WDnZIjIeyEU21OpBXqWBgw");
-        random = new Random();
+        this.synthesizer = new SynthesiserV2("AIzaSyBOti4mM-6x9WDnZIjIeyEU21OpBXqWBgw");
+        this.random = new Random();
     }
 
     @Async

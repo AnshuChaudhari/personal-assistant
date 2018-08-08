@@ -5,14 +5,14 @@ import com.ac.service.VoiceOutputService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Calendar;
 
-@Component
+@Service
 public class PersonalAssistantRunner implements CommandLineRunner {
 
     private static final Logger logger = LoggerFactory.getLogger(PersonalAssistantRunner.class);
@@ -59,21 +59,21 @@ public class PersonalAssistantRunner implements CommandLineRunner {
         response.setWrapStyleWord(true);
         response.setLineWrap(true);
 
-        final JButton record = new JButton("Listen");
+        final JButton listen = new JButton("Listen");
         final JButton stop = new JButton("Stop");
         stop.setEnabled(false);
 
-        record.addActionListener(new ActionListener() {
+        listen.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
                 speechRecognitionService.startSpeechRecognition();
-                record.setEnabled(false);
+                listen.setEnabled(false);
                 stop.setEnabled(true);
             }
         });
         stop.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent arg0) {
                 speechRecognitionService.stopSpeechRecognition();
-                record.setEnabled(true);
+                listen.setEnabled(true);
                 stop.setEnabled(false);
             }
         });
@@ -92,7 +92,7 @@ public class PersonalAssistantRunner implements CommandLineRunner {
         JPanel recordBar = new JPanel();
         frame.getContentPane().add(recordBar);
         recordBar.setLayout(new BoxLayout(recordBar, 0));
-        recordBar.add(record);
+        recordBar.add(listen);
         recordBar.add(stop);
         frame.setVisible(true);
         frame.pack();
